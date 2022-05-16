@@ -1,0 +1,7 @@
+---
+- name: restart syncthing
+  community.docker.docker_compose:
+    project_src: "{{ config_dir }}"
+    build: false
+    restarted: true
+  become: false

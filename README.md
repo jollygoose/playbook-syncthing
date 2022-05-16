@@ -1,0 +1,1 @@
+Simple playbook for setting up [syncthing](https://syncthing.net/) using the image from [linuxserver.io](https://hub.docker.com/r/linuxserver/syncthing).

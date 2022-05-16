@@ -1,0 +1,21 @@
+---
+- name: create album folder
+  ansible.builtin.file:
+    path: "{{ config_dir }}"
+    state: directory
+    mode: 0755
+  become: false
+
+- name: copy syncthing docker-compose template to destination
+  ansible.builtin.template:
+    src: templates/syncthing-docker-compose.yaml.j2
+    dest: "{{ config_dir }}/docker-compose.yaml"
+    mode: "0640"
+  become: false
+  notify: restart syncthing
+
+- name: ensure syncthing
+  community.docker.docker_compose:
+    project_src: "{{ config_dir }}"
+    build: false
+  become: false

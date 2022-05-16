@@ -1,0 +1,16 @@
+---
+- hosts: server
+
+  pre_tasks:
+    - name: load config
+      ansible.builtin.include_vars: "{{ item }}"
+      loop:
+        - config.yaml
+
+  handlers:
+    - name: Include handlers.
+      ansible.builtin.import_tasks: tasks/handlers.yaml
+
+  tasks:
+    - name: set up syncthing
+      ansible.builtin.import_tasks: tasks/syncthing.yaml
